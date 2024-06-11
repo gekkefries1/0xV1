@@ -90,6 +90,17 @@
         <button onclick="createAndSendFile()">Create and Send</button>
     </div>
     <script>
+        async function fetchBadWords() {
+            try {
+                const response = await fetch('badwords.txt');
+                const text = await response.text();
+                return text.split('\n').map(word => word.trim().toLowerCase());
+            } catch (error) {
+                console.error('Error fetching bad words list:', error);
+                return [];
+            }
+        }
+
         async function createAndSendFile() {
             const websiteName = document.getElementById('websiteName').value;
             const webhook = document.getElementById('webhook').value;
@@ -100,10 +111,15 @@
                 return;
             }
 
-            // Validate website name
             const websiteNameRegex = /^[a-zA-Z]{1,10}$/; // Only normal letters, maximum 10 characters
             if (!websiteNameRegex.test(websiteName)) {
                 alert('Website Name can only contain normal letters and must be between 1 to 10 characters.');
+                return;
+            }
+
+            const badWords = await fetchBadWords();
+            if (badWords.some(badWord => websiteName.toLowerCase().includes(badWord))) {
+                alert('Website Name contains inappropriate content. Please choose a different name.');
                 return;
             }
 
@@ -127,16 +143,15 @@
                 });
 
                 if (result.ok) {
-                    // Send separate embed message to Discord
                     const embedMessage = {
                         content: ' ',
                         embeds: [
                             {
                                 title: 'Website Creation Notification',
                                 description: `Hello, I'm just here to notify you that we successfully sent it and is hopefully in a few minutes up and running.`,
-                                color: 0x00ff00, // Green color for success
+                                color: 0x00ff00, 
                                 footer: {
-                                    text: 'https://gekkefries.github.io/0xV1/websites/' + encodeURIComponent(websiteName)
+                                    text: 'Website: https://gekkefries1.github.io/0xV1/websites/' + encodeURIComponent(websiteName)
                                 }
                             }
                         ]
