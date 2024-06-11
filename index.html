@@ -52,6 +52,28 @@
             font-size: 48px;
             font-weight: bold;
             color: #D42CE3;
+            position: relative;
+            z-index: 1;
+        }
+
+        .ox-text::before {
+            content: '0x';
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: transparent;
+            -webkit-text-stroke: 1px white; /* White outline */
+            z-index: -1;
+        }
+
+        .ox-text::after {
+            content: '0x';
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #D42CE3;
+            filter: blur(4px); /* Adjust blur size for glow effect */
+            z-index: -2;
         }
 
         .vanish {
