@@ -3,26 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>0x Multi-Tool</title>
-    
-    <!-- Open Graph Metadata -->
-    <meta property="og:title" content="0x Multi-Tool">
-    <meta property="og:description" content="0x is a free multi-tool developed by .gekkefries1
-
-For Support Dm
-· · ──────·本·──────· ·
-《  .gekkefries1 》
-· · ──────·本·──────· ·">
-    <meta property="og:image" content="https://i.ibb.co/W2DQr84/james-in-amry.png"> <!-- image urllllL -->
-    <meta property="og:url" content="https://gekkefries1.github.io/0x/"> <!-- website url -->
-    <meta property="og:type" content="website">
-    <meta name="theme-color" content="#D42CE3">
-
+    <title>My Website</title>
     <style>
-        :root {
-            --text-box-gap: 70px; /* Modify this value to adjust the distance */
-        }
-
         body {
             background-color: #18181B;
             margin: 0;
@@ -31,7 +13,7 @@ For Support Dm
             height: 100vh;
             overflow: hidden;
             position: relative;
-            cursor: none; 
+            cursor: none; /* Hide the default cursor */
         }
 
         .custom-cursor {
@@ -42,7 +24,7 @@ For Support Dm
             background-size: contain;
             pointer-events: none;
             transform: scale(1);
-            z-index: 10000; 
+            z-index: 10000; /* Ensure it is on top of all other elements */
         }
 
         .custom-cursor-clickable {
@@ -53,8 +35,8 @@ For Support Dm
         .container {
             position: absolute;
             top: 50%;
-            left: calc(50% - var(--text-box-gap) - 150px); /* Adjusted for half the width of the tall box */
-            transform: translate(-100%, -50%);
+            left: 25%;
+            transform: translateY(-50%);
             display: flex;
             align-items: center;
         }
@@ -70,6 +52,7 @@ For Support Dm
             font-weight: bold;
             color: #18181B;
             -webkit-text-stroke: 0.5px white;
+            margin-left: -0px;
             text-shadow: 
               0 0 25px #D42CE3,
               0 0 5px white;
@@ -173,9 +156,8 @@ For Support Dm
             height: 20px;
             background-color: #D42CE3;
             border-radius: 50%;
-            pointer-events: none;
-            transform: scale(0);
             animation: explode 1.5s ease-out;
+            pointer-events: none;
         }
 
         @keyframes explode {
@@ -206,15 +188,9 @@ For Support Dm
             text-align: center;
         }
 
-        .title {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-
         .tall-box-text {
             color: #D42CE3;
-            font-size: 18px;
+            font-size: 24px;
             font-weight: bold;
             margin-bottom: auto;
             margin-top: 20px;
@@ -228,44 +204,45 @@ For Support Dm
             height: 100%;
             border-radius: 20px;
             box-shadow: 0 0 20px #D42CE3;
-            animation: move-glow 3
-s infinite;
-pointer-events: none;
+            animation: move-glow 3s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes move-glow {
+            0% {
+                box-shadow: 0 0 20px #D42CE3, 0 0 40px #D42CE3;
+            }
+            50% {
+                box-shadow: 0 0 30px #D42CE3, 0 0 60px #D42CE3;
+            }
+            100% {
+                box-shadow: 0 0 20px #D42CE3, 0 0 40px #D42CE3;
+            }
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            padding: 20px;
+            margin-top: auto;
+        }
+
+        .custom-button {
+            background-color: #D42CE3;
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            cursor: none; /* Prevent default cursor */
+            transition: background-color 0.3s, transform 0
+
+.3s;
+font-size: 18px;
 }
-    @keyframes move-glow {
-        0% {
-            box-shadow: 0 0 20px #D42CE3, 0 0 40px #D42CE3;
-        }
-        50% {
-            box-shadow: 0 0 30px #D42CE3, 0 0 60px #D42CE3;
-        }
-        100% {
-            box-shadow: 0 0 20px #D42CE3, 0 0 40px #D42CE3;
-        }
-    }
-
-    .button-container {
-        display: flex;
-        justify-content: space-around;
-        width: 100%;
-        padding: 20px;
-        margin-top: auto;
-    }
-
-    .custom-button {
-        background-color: #D42CE3;
-        border: none;
-        color: white;
-        padding: 15px 30px;
-        border-radius: 10px;
-        cursor: none; 
-        transition: background-color 0.3s, transform 0.3s;
-        font-size: 18px;
-    }
-
     .custom-button:hover {
         background-color: #b920d0;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add a subtle shadow instead of transforming */
     }
 
     .notification {
@@ -281,83 +258,162 @@ pointer-events: none;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         z-index: 1000;
         text-align: center;
+        opacity: 0;
+        transition: opacity 0.5s;
     }
 
+    .notification.visible {
+        opacity: 1;
+    }
+
+    .notification::after {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 2px;
+        background-color: white;
+        margin-top: 10px;
+        animation: countdown 3s linear;
+    }
+
+    @keyframes countdown {
+        from {
+            width: 100%;
+        }
+        to {
+            width: 0;
+        }
+    }
+
+    /* New Code for the Line and Filled Bottom */
+    .wave-container {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 50%;
+        z-index: -2; /* Behind everything */
+    }
+
+    .wave {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 200px;
+        background: linear-gradient(to top right, transparent calc(50% - 0.5px), #481D4F calc(50% - 0.5px), #481D4F calc(50% + 0.5px), transparent calc(50% + 0.5px));
+        animation: waveAnimation 2s infinite alternate;
+    }
+
+    .wave-bottom {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: calc(100% - 200px);
+        background-color: #481D4F;
+    }
+
+    @keyframes waveAnimation {
+        0% {
+            transform: skewY(2deg);
+        }
+        100% {
+            transform: skewY(-2deg);
+        }
+    }
+    /* End of New Code */
 </style>
 </head>
 <body>
     <div class="container">
-        <div class="welcome">Welcome to</div>
-        <div class="vanish">0x Multi-Tool</div>
+        <div class="welcome">Welcome To</div>
+        <div class="vanish">Vanish</div>
     </div>
-<img class="full-height-image" src="https://i.ibb.co/W2DQr84/james-in-amry.png" alt="Background Image">
-<div class="fade-overlay"></div>
-
-<div class="glow top-left"></div>
-<div class="glow top-right"></div>
-<div class="glow bottom-left"></div>
-<div class="glow bottom-right"></div>
-
-<div class="border-glow">
-    <div class="vertical-glow left"></div>
-    <div class="vertical-glow right"></div>
-</div>
-
-<div class="tall-box">
-    <div class="title">Support</div>
-    <div class="tall-box-text">
-        For Support Dm<br>
-        · · ──────·本·──────· ·<br>
-        《  .gekkefries1 》<br>
-        · · ──────·本·──────· ·
+    <div class="tall-box">
+        <div class="tall-box-text">YOUR TEXT HERE</div>
+        <div class="button-container">
+            <button class="custom-button" onclick="downloadFile()">Download</button>
+            <button class="custom-button" onclick="openDiscord()">Discord</button>
+        </div>
+        <div class="glow-box"></div>
     </div>
-    <div class="button-container">
-        <button class="custom-button" id="button1">Button 1</button>
-        <button class="custom-button" id="button2">Button 2</button>
+    <img src="zero.png" alt="Zero" class="full-height-image">
+    <div class="fade-overlay"></div>
+    <div class="glow top-left"></div>
+    <div class="glow top-right"></div>
+    <div class="glow bottom-left"></div>
+    <div class="glow bottom-right"></div>
+    <div class="border-glow">
+        <div class="vertical-glow left"></div>
+        <div class="vertical-glow right"></div>
     </div>
-    <div class="glow-box"></div>
-</div>
-
-<div class="custom-cursor"></div>
-
+    <div class="wave-container">
+        <div class="wave"></div>
+        <div class="wave-bottom"></div>
+    </div>
+    <div class="custom-cursor" id="customCursor"></div>
+    <div class="notification" id="notification"></div>
 <script>
-    document.addEventListener('mousemove', function(event) {
-        const cursor = document.querySelector('.custom-cursor');
-        cursor.style.left = event.clientX + 'px';
-        cursor.style.top = event.clientY + 'px';
+    document.addEventListener('mousemove', function (e) {
+        const cursor = document.getElementById('customCursor');
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
     });
 
-    const buttons = document.querySelectorAll('.custom-button');
-    buttons.forEach(button => {
-        button.addEventListener('mouseover', () => {
-            const cursor = document.querySelector('.custom-cursor');
+    document.querySelectorAll('button').forEach(button => {
+        button.addEventListener('mouseenter', function () {
+            const cursor = document.getElementById('customCursor');
             cursor.classList.add('custom-cursor-clickable');
         });
 
-        button.addEventListener('mouseout', () => {
-            const cursor = document.querySelector('.custom-cursor');
+        button.addEventListener('mouseleave', function () {
+            const cursor = document.getElementById('customCursor');
             cursor.classList.remove('custom-cursor-clickable');
         });
-
-        button.addEventListener('click', () => {
-            const explosion = document.createElement('div');
-            explosion.classList.add('glow-explosion');
-            explosion.style.left = (event.clientX - 10) + 'px';
-            explosion.style.top = (event.clientY - 10) + 'px';
-            document.body.appendChild(explosion);
-            setTimeout(() => {
-                explosion.remove();
-            }, 1500);
-
-            const notification = document.querySelector('.notification');
-            notification.style.display = 'block';
-            setTimeout(() => {
-                notification.style.display = 'none';
-            }, 3000);
-        });
     });
-</script>
 
-<div class="notification">Button Clicked!</div>
+    function downloadFile() {
+        const fileURL = 'your-download-link-here';
+
+        if (!fileURL || fileURL === 'your-download-link-here') {
+            showNotification('Failed to Download the file.');
+            return;
+        }
+
+        const link = document.createElement('a');
+        link.href = fileURL;
+        link.download = 'your-file-name';
+        
+        link.onerror = () => {
+            showNotification('Failed to Download the file.');
+        };
+
+        document.body.appendChild(link);
+        link.click();
+        showNotification('Download started successfully.');
+        document.body.removeChild(link);
+    }
+
+    function showNotification(message) {
+        const notification = document.getElementById('notification');
+        notification.textContent = message;
+        notification.classList.add('visible');
+        setTimeout(() => {
+            notification.classList.remove('visible');
+        }, 3000);
+    }
+
+    function openDiscord() {
+        window.open('https://discord.com', '_blank');
+    }
+
+    // Ensure custom cursor is visible on initial load and page refresh
+    window.onload = function() {
+        const cursor = document.getElementById('customCursor');
+        document.body.style.cursor = 'none';
+        cursor.style.display = 'block';
+    }
+</script>
 </body>
 </html>
