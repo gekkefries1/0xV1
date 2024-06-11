@@ -244,7 +244,6 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add a subtle shadow instead of transforming */
         }
 
-
         .notification {
             display: none;
             position: fixed;
@@ -366,6 +365,21 @@
             window.open('https://discord.com', '_blank');
         }
 
+        function createGlowExplosion(x, y) {
+            const explosion = document.createElement('div');
+            explosion.className = 'glow-explosion';
+            explosion.style.left = `${x - 10}px`; // Offset to center the explosion
+            explosion.style.top = `${y - 10}px`; // Offset to center the explosion
+            document.body.appendChild(explosion);
+            explosion.addEventListener('animationend', () => {
+                document.body.removeChild(explosion);
+            });
+        }
+
+        document.addEventListener('click', function (e) {
+            createGlowExplosion(e.clientX, e.clientY);
+        });
+
         // Ensure custom cursor is visible on initial load and page refresh
         window.onload = function() {
             const cursor = document.getElementById('customCursor');
@@ -375,3 +389,4 @@
     </script>
 </body>
 </html>
+
