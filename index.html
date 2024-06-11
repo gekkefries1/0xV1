@@ -7,8 +7,8 @@
     <style>
         :root {
             --glow-color: #D42CE3;
-            --glow-blur: 30px; /* Adjust this for stronger or weaker glow */
-            --glow-opacity: 1; /* Adjust this for more or less opacity */
+            --glow-blur: 40px; /* Increased for wider spread */
+            --glow-opacity: 1; /* Full opacity for strong visibility */
         }
 
         body {
@@ -78,8 +78,8 @@
             left: 0;
             top: 0;
             color: var(--glow-color);
-            filter: blur(var(--glow-blur)); /* Adjustable blur size for glow effect */
-            opacity: var(--glow-opacity); /* Adjustable opacity for glow effect */
+            filter: blur(var(--glow-blur));
+            opacity: var(--glow-opacity);
             z-index: -2;
         }
 
@@ -423,4 +423,5 @@
     </script>
 </body>
 </html>
+
 
