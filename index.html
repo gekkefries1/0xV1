@@ -35,16 +35,23 @@
         .container {
             position: absolute;
             top: 50%;
-            left: 30%; /* Adjust this value to change the distance from the left side */
+            left: 10%; /* Adjust as needed */
             transform: translateY(-50%);
             display: flex;
             align-items: center;
+            flex-direction: column;
         }
 
         .welcome {
             font-size: 48px;
             font-weight: bold;
-            margin-right: 10px;
+            margin-bottom: 10px; /* Adjust as needed */
+        }
+
+        .ox-text {
+            font-size: 48px;
+            font-weight: bold;
+            color: #D42CE3;
         }
 
         .vanish {
@@ -286,7 +293,8 @@
 </head>
 <body>
     <div class="container">
-        <div class="welcome">Welcome To 0x</div>
+        <div class="welcome">Welcome To</div>
+        <div class="ox-text">0x</div>
     </div>
     <div class="tall-box">
         <div class="tall-box-text">0x Is a Free multi-Tool By Gekkefries.</div>
@@ -378,7 +386,6 @@
             createGlowExplosion(e.clientX, e.clientY);
         });
 
-
         window.onload = function() {
             const cursor = document.getElementById('customCursor');
             document.body.style.cursor = 'none';
@@ -387,5 +394,4 @@
     </script>
 </body>
 </html>
-
 
