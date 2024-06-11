@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website</title>
+    <title>0x</title>
     <style>
         body {
             background-color: #18181B;
@@ -234,14 +234,14 @@
             color: white;
             padding: 15px 30px;
             border-radius: 10px;
-            cursor: none; /* Prevent default cursor */
+            cursor: none; 
             transition: background-color 0.3s, transform 0.3s;
             font-size: 18px;
         }
 
         .custom-button:hover {
             background-color: #b920d0;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add a subtle shadow instead of transforming */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
         }
 
         .notification {
@@ -291,7 +291,7 @@
         <div class="vanish">Vanish</div>
     </div>
     <div class="tall-box">
-        <div class="tall-box-text">YOUR TEXT HERE</div>
+        <div class="tall-box-text">0x Is a Free multi-Tool By Gekkefries.</div>
         <div class="button-container">
             <button class="custom-button" onclick="downloadFile()">Download</button>
             <button class="custom-button" onclick="openDiscord()">Discord</button>
@@ -331,16 +331,16 @@
         });
 
         function downloadFile() {
-            const fileURL = 'your-download-link-here';
+            const fileURL = 'downloadlink'; // here will be the download link.
 
-            if (!fileURL || fileURL === 'your-download-link-here') {
+            if (!fileURL || fileURL === 'download') { // Here too will be a download link
                 showNotification('Failed to Download the file.');
                 return;
             }
 
             const link = document.createElement('a');
             link.href = fileURL;
-            link.download = 'your-file-name';
+            link.download = '0x';
             
             link.onerror = () => {
                 showNotification('Failed to Download the file.');
@@ -368,8 +368,8 @@
         function createGlowExplosion(x, y) {
             const explosion = document.createElement('div');
             explosion.className = 'glow-explosion';
-            explosion.style.left = `${x - 10}px`; // Offset to center the explosion
-            explosion.style.top = `${y - 10}px`; // Offset to center the explosion
+            explosion.style.left = `${x - 10}px`;
+            explosion.style.top = `${y - 10}px`; 
             document.body.appendChild(explosion);
             explosion.addEventListener('animationend', () => {
                 document.body.removeChild(explosion);
@@ -380,7 +380,7 @@
             createGlowExplosion(e.clientX, e.clientY);
         });
 
-        // Ensure custom cursor is visible on initial load and page refresh
+
         window.onload = function() {
             const cursor = document.getElementById('customCursor');
             document.body.style.cursor = 'none';
