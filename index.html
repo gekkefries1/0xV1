@@ -7,7 +7,7 @@
     <style>
         :root {
             --glow-color: #D42CE3;
-            --glow-blur: 40px; /* Increased for wider spread */
+            --glow-blur: 50px; /* Increased for wider spread */
             --glow-opacity: 1; /* Full opacity for strong visibility */
         }
 
@@ -60,6 +60,7 @@
             color: var(--glow-color);
             position: relative;
             z-index: 1;
+            text-shadow: 0 0 20px var(--glow-color), 0 0 40px var(--glow-color), 0 0 60px var(--glow-color); /* Add text-shadow for extra glow */
         }
 
         .ox-text::before {
@@ -78,8 +79,8 @@
             left: 0;
             top: 0;
             color: var(--glow-color);
-            filter: blur(var(--glow-blur));
-            opacity: var(--glow-opacity);
+            filter: blur(50px); /* Increase the blur */
+            opacity: 1; /* Ensure full opacity */
             z-index: -2;
         }
 
@@ -423,5 +424,3 @@
     </script>
 </body>
 </html>
-
-
