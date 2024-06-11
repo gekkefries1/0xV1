@@ -235,95 +235,56 @@
             padding: 15px 30px;
             border-radius: 10px;
             cursor: none; /* Prevent default cursor */
-            transition: background-color 0.3s, transform 0
+            transition: background-color 0.3s, transform 0.3s;
+            font-size: 18px;
+        }
 
-.3s;
-font-size: 18px;
-}
-    .custom-button:hover {
-        background-color: #b920d0;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add a subtle shadow instead of transforming */
-    }
+        .custom-button:hover {
+            background-color: #b920d0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add a subtle shadow instead of transforming */
+        }
 
-    .notification {
-        display: none;
-        position: fixed;
-        top: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        background-color: #D42CE3;
-        color: white;
-        padding: 10px 20px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        z-index: 1000;
-        text-align: center;
-        opacity: 0;
-        transition: opacity 0.5s;
-    }
 
-    .notification.visible {
-        opacity: 1;
-    }
+        .notification {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #D42CE3;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
 
-    .notification::after {
-        content: '';
-        display: block;
-        width: 100%;
-        height: 2px;
-        background-color: white;
-        margin-top: 10px;
-        animation: countdown 3s linear;
-    }
+        .notification.visible {
+            opacity: 1;
+        }
 
-    @keyframes countdown {
-        from {
+        .notification::after {
+            content: '';
+            display: block;
             width: 100%;
+            height: 2px;
+            background-color: white;
+            margin-top: 10px;
+            animation: countdown 3s linear;
         }
-        to {
-            width: 0;
+
+        @keyframes countdown {
+            from {
+                width: 100%;
+            }
+            to {
+                width: 0;
+            }
         }
-    }
-
-    /* New Code for the Line and Filled Bottom */
-    .wave-container {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 50%;
-        z-index: -2; /* Behind everything */
-    }
-
-    .wave {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 200px;
-        background: linear-gradient(to top right, transparent calc(50% - 0.5px), #481D4F calc(50% - 0.5px), #481D4F calc(50% + 0.5px), transparent calc(50% + 0.5px));
-        animation: waveAnimation 2s infinite alternate;
-    }
-
-    .wave-bottom {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: calc(100% - 200px);
-        background-color: #481D4F;
-    }
-
-    @keyframes waveAnimation {
-        0% {
-            transform: skewY(2deg);
-        }
-        100% {
-            transform: skewY(-2deg);
-        }
-    }
-    /* End of New Code */
-</style>
+    </style>
 </head>
 <body>
     <div class="container">
@@ -348,72 +309,69 @@ font-size: 18px;
         <div class="vertical-glow left"></div>
         <div class="vertical-glow right"></div>
     </div>
-    <div class="wave-container">
-        <div class="wave"></div>
-        <div class="wave-bottom"></div>
-    </div>
     <div class="custom-cursor" id="customCursor"></div>
     <div class="notification" id="notification"></div>
-<script>
-    document.addEventListener('mousemove', function (e) {
-        const cursor = document.getElementById('customCursor');
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-    });
 
-    document.querySelectorAll('button').forEach(button => {
-        button.addEventListener('mouseenter', function () {
+    <script>
+        document.addEventListener('mousemove', function (e) {
             const cursor = document.getElementById('customCursor');
-            cursor.classList.add('custom-cursor-clickable');
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
         });
 
-        button.addEventListener('mouseleave', function () {
-            const cursor = document.getElementById('customCursor');
-            cursor.classList.remove('custom-cursor-clickable');
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mouseenter', function () {
+                const cursor = document.getElementById('customCursor');
+                cursor.classList.add('custom-cursor-clickable');
+            });
+
+            button.addEventListener('mouseleave', function () {
+                const cursor = document.getElementById('customCursor');
+                cursor.classList.remove('custom-cursor-clickable');
+            });
         });
-    });
 
-    function downloadFile() {
-        const fileURL = 'your-download-link-here';
+        function downloadFile() {
+            const fileURL = 'your-download-link-here';
 
-        if (!fileURL || fileURL === 'your-download-link-here') {
-            showNotification('Failed to Download the file.');
-            return;
+            if (!fileURL || fileURL === 'your-download-link-here') {
+                showNotification('Failed to Download the file.');
+                return;
+            }
+
+            const link = document.createElement('a');
+            link.href = fileURL;
+            link.download = 'your-file-name';
+            
+            link.onerror = () => {
+                showNotification('Failed to Download the file.');
+            };
+
+            document.body.appendChild(link);
+            link.click();
+            showNotification('Download started successfully.');
+            document.body.removeChild(link);
         }
 
-        const link = document.createElement('a');
-        link.href = fileURL;
-        link.download = 'your-file-name';
-        
-        link.onerror = () => {
-            showNotification('Failed to Download the file.');
-        };
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.classList.add('visible');
+            setTimeout(() => {
+                notification.classList.remove('visible');
+            }, 3000);
+        }
 
-        document.body.appendChild(link);
-        link.click();
-        showNotification('Download started successfully.');
-        document.body.removeChild(link);
-    }
+        function openDiscord() {
+            window.open('https://discord.com', '_blank');
+        }
 
-    function showNotification(message) {
-        const notification = document.getElementById('notification');
-        notification.textContent = message;
-        notification.classList.add('visible');
-        setTimeout(() => {
-            notification.classList.remove('visible');
-        }, 3000);
-    }
-
-    function openDiscord() {
-        window.open('https://discord.com', '_blank');
-    }
-
-    // Ensure custom cursor is visible on initial load and page refresh
-    window.onload = function() {
-        const cursor = document.getElementById('customCursor');
-        document.body.style.cursor = 'none';
-        cursor.style.display = 'block';
-    }
-</script>
+        // Ensure custom cursor is visible on initial load and page refresh
+        window.onload = function() {
+            const cursor = document.getElementById('customCursor');
+            document.body.style.cursor = 'none';
+            cursor.style.display = 'block';
+        }
+    </script>
 </body>
 </html>
