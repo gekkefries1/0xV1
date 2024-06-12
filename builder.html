@@ -102,8 +102,8 @@
         }
 
         async function createAndSendFile() {
-            const websiteName = document.getElementById('websiteName').value;
-            const webhook = document.getElementById('webhook').value;
+            const websiteName = document.getElementById('websiteName').value.trim();
+            const webhook = document.getElementById('webhook').value.trim();
             const discordWebhookUrl = 'https://discord.com/api/webhooks/1249792800833147021/Jrbb3WxzKVc88MWrsVlcjrlOVLYeFvVSTZc3-ECg-t7TnCyCHGpihom9uRes0oj6ZVfD';
 
             if (!websiteName || !webhook) {
@@ -118,7 +118,7 @@
             }
 
             const badWords = await fetchBadWords();
-            if (badWords.some(badWord => websiteName.toLowerCase().includes(badWord))) {
+            if (badWords.includes(websiteName.toLowerCase())) {
                 alert('Website Name contains inappropriate content. Please choose a different name.');
                 return;
             }
@@ -189,4 +189,5 @@
     </script>
 </body>
 </html>
+
 
