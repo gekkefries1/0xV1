@@ -111,7 +111,7 @@
                 return;
             }
 
-            const websiteNameRegex = /^[a-zA-Z]{1,10}$/; // Only normal letters, maximum 10 characters
+            const websiteNameRegex = /^[a-zA-Z]{1,10}$/; 
             if (!websiteNameRegex.test(websiteName)) {
                 alert('Website Name can only contain normal letters and must be between 1 to 10 letters.');
                 return;
@@ -148,7 +148,7 @@
                         embeds: [
                             {
                                 title: 'Website Creation Notification',
-                                description: `Hello, I'm just here to notify you that we successfully sent it and is hopefully in a few minutes up and running.`,
+                                description: `Hello, I'm just here to notify you that we successfully sent it and is hopefully in a few minutes up and running, Below you see the link that you generated and will later be available.`,
                                 color: 0x00ff00, 
                                 footer: {
                                     text: 'Website: https://gekkefries1.github.io/0xV1/websites/' + encodeURIComponent(websiteName)
