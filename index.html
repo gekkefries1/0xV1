@@ -23,8 +23,8 @@
             margin: 0;
             font-family: Arial, sans-serif;
             color: white;
-            min-height: 200vh;
-            overflow: auto;
+            height: 100vh;
+            overflow: hidden;
             position: relative;
             cursor: none; 
         }
@@ -128,7 +128,7 @@
         .glow.bottom-right { bottom: -120px; right: -120px; }
 
         .border-glow {
-            position: fixed; /* Change to fixed */
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
@@ -174,7 +174,7 @@
         }
 
         .full-height-image {
-            position: fixed; /* Change to fixed */
+            position: absolute;
             top: 0;
             bottom: 0;
             right: 0;
@@ -185,7 +185,7 @@
         }
 
         .fade-overlay {
-            position: fixed; /* Change to fixed */
+            position: absolute;
             top: 0;
             bottom: 0;
             right: 0;
@@ -306,7 +306,6 @@
         }
 
         .notification.visible {
-            display: block;
             opacity: 1;
         }
 
@@ -327,10 +326,6 @@
             to {
                 width: 0;
             }
-        }
-
-        .extra-space {
-            height: 1000px; /* Adjust the height as needed */
         }
     </style>
 </head>
@@ -359,9 +354,6 @@
     </div>
     <div class="custom-cursor" id="customCursor"></div>
     <div class="notification" id="notification"></div>
-
-    <!-- Extra space element -->
-    <div class="extra-space"></div>
 
     <script>
         document.addEventListener('mousemove', function (e) {
@@ -440,4 +432,3 @@
     </script>
 </body>
 </html>
-
