@@ -12,6 +12,7 @@
             font-family: Arial, sans-serif;
             color: white;
             overflow-x: hidden; /* Hide horizontal scroll */
+            scroll-behavior: smooth; /* Smooth scrolling behavior */
         }
 
         .showcase {
@@ -22,6 +23,12 @@
             padding: 20px;
             border-bottom: 1px solid #333;
             scroll-snap-align: start; /* Snap each showcase to the top of the viewport */
+            opacity: 0; /* Initially hidden */
+            transition: opacity 0.5s ease; /* Fade-in transition */
+        }
+
+        .showcase.active {
+            opacity: 1; /* Show when in view */
         }
 
         .showcase:nth-child(even) {
@@ -33,6 +40,7 @@
             max-height: calc(100vh - 40px); /* Adjust for padding */
             object-fit: cover; /* Ensure the image covers the entire container */
             border-radius: 10px;
+            box-shadow: 0 0 50px #D42CE3; /* Glow effect */
         }
 
         .showcase:nth-child(even) img {
@@ -43,6 +51,12 @@
         .showcase-content {
             max-width: 600px;
             text-align: center;
+            opacity: 0; /* Initially hidden */
+            transition: opacity 0.5s ease; /* Fade-in transition */
+        }
+
+        .showcase.active .showcase-content {
+            opacity: 1; /* Show when in view */
         }
 
         .showcase-title {
@@ -59,26 +73,55 @@
 </head>
 <body>
     <div class="showcase">
+        <img src="images/image1.jpg" alt="Image 1">
         <div class="showcase-content">
             <div class="showcase-title">Title 1</div>
             <div class="showcase-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ultricies leo nec nulla aliquam, non tincidunt velit luctus.</div>
         </div>
-        <img src="images/image1.jpg" alt="Image 1">
     </div>
     <div class="showcase">
+        <img src="images/image2.jpg" alt="Image 2">
         <div class="showcase-content">
             <div class="showcase-title">Title 2</div>
             <div class="showcase-text">Suspendisse potenti. Vivamus venenatis magna at nunc vehicula, a ultricies urna vestibulum.</div>
         </div>
-        <img src="images/image2.jpg" alt="Image 2">
     </div>
     <div class="showcase">
+        <img src="images/image3.jpg" alt="Image 3">
         <div class="showcase-content">
             <div class="showcase-title">Title 3</div>
             <div class="showcase-text">Nulla facilisi. Maecenas sollicitudin tortor id augue consequat, in dictum urna aliquet.</div>
         </div>
-        <img src="images/image3.jpg" alt="Image 3">
     </div>
     <!-- Add more showcase sections as needed -->
+    
+    <script>
+        // Function to check if an element is in viewport
+        function isInViewport(element) {
+            const rect = element.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+
+        // Function to handle scroll event
+        function handleScroll() {
+            const showcases = document.querySelectorAll('.showcase');
+            showcases.forEach(showcase => {
+                if (isInViewport(showcase)) {
+                    showcase.classList.add('active');
+                }
+            });
+        }
+
+        // Initial check on page load
+        handleScroll();
+
+        // Listen for scroll events
+        window.addEventListener('scroll', handleScroll);
+    </script>
 </body>
 </html>
