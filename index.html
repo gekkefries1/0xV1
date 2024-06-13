@@ -128,7 +128,7 @@
         .glow.bottom-right { bottom: -120px; right: -120px; }
 
         .border-glow {
-            position: absolute;
+            position: fixed; /* Change to fixed */
             top: 0;
             left: 0;
             width: 100%;
@@ -174,7 +174,7 @@
         }
 
         .full-height-image {
-            position: absolute;
+            position: fixed; /* Change to fixed */
             top: 0;
             bottom: 0;
             right: 0;
@@ -185,7 +185,7 @@
         }
 
         .fade-overlay {
-            position: absolute;
+            position: fixed; /* Change to fixed */
             top: 0;
             bottom: 0;
             right: 0;
@@ -306,6 +306,7 @@
         }
 
         .notification.visible {
+            display: block;
             opacity: 1;
         }
 
@@ -439,3 +440,4 @@
     </script>
 </body>
 </html>
+
