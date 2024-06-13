@@ -127,7 +127,6 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
         }
 
-
         .showcase {
             display: flex;
             align-items: center;
@@ -231,7 +230,7 @@
             <li class="nav-item" data-target="showcase1">Showcase 1</li>
             <li class="nav-item" data-target="showcase2">Showcase 2</li>
             <li class="nav-item" data-target="showcase3">Showcase 3</li>
-            <!-- here just add more if I want more pages behehehehe -->
+            <!-- Add more nav items if needed -->
         </ul>
     </div>
 
@@ -281,9 +280,10 @@
     </section>
 
     <div class="scroll-indicator">
-        <div class="indicator"></div>
-        <div class="indicator"></div>
-        <div class="indicator"></div>
+        <div class="indicator-dot"></div>
+        <div class="indicator-dot"></div>
+        <div class="indicator-dot"></div>
+        <div class="indicator-dot"></div>
     </div>
 
     <script>
@@ -312,23 +312,22 @@
                         navItems[index].classList.add('active');
                         indicators.forEach(dot => dot.classList.remove('active'));
                         indicators[index].classList.add('active');
+                    }
+                });
+            });
 
-
-
-}
-});
-});
-        const firstSection = sections[0];
-        const firstNavItem = navItems[0];
-        const firstIndicator = indicators[0];
-        window.scrollTo({
-            top: firstSection.offsetTop - 50,
-            behavior: 'smooth'
+            const firstSection = sections[0];
+            const firstNavItem = navItems[0];
+            const firstIndicator = indicators[0];
+            window.scrollTo({
+                top: firstSection.offsetTop - 50,
+                behavior: 'smooth'
+            });
+            firstNavItem.classList.add('active');
+            firstIndicator.classList.add('active');
         });
-        firstNavItem.classList.add('active');
-        firstIndicator.classList.add('active');
-    });
-</script>
+    </script>
 </body>
 </html>
+
 
