@@ -24,8 +24,8 @@
             font-family: Arial, sans-serif;
             color: white;
             height: 100vh;
-            overflow: hidden;
-            position: relative;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
             cursor: none; 
         }
 
@@ -327,6 +327,56 @@
                 width: 0;
             }
         }
+
+        /* Navigation Bar */
+        .nav-bar {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .nav-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: lightgray;
+            margin: 10px 0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .nav-dot.active {
+            background-color: white;
+        }
+
+        /* Showcase Section */
+        .showcase {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #242424;
+            color: white;
+        }
+
+        .showcase img {
+            max-width: 40%;
+            height: auto;
+            margin-right: 20px;
+        }
+
+        .showcase-text {
+            max-width: 50%;
+        }
+
+        .showcase-title {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
@@ -354,6 +404,21 @@
     </div>
     <div class="custom-cursor" id="customCursor"></div>
     <div class="notification" id="notification"></div>
+
+    <!-- Navigation Bar -->
+    <div class="nav-bar">
+        <div class="nav-dot active" onclick="scrollToSection('home')"></div>
+        <div class="nav-dot" onclick="scrollToSection('showcase')"></div>
+    </div>
+
+    <!-- Showcase Section -->
+    <div id="showcase" class="showcase">
+        <img src="showcase-image.png" alt="Showcase Image">
+        <div class="showcase-text">
+            <div class="showcase-title">Showcase Title</div>
+            <div class="showcase-description">This is the showcase description text. Here you can describe the image or the showcase in detail.</div>
+        </div>
+    </div>
 
     <script>
         document.addEventListener('mousemove', function (e) {
@@ -429,7 +494,23 @@
             document.body.style.cursor = 'none';
             cursor.style.display = 'block';
         }
+
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            section.scrollIntoView({ behavior: 'smooth' });
+
+            document.querySelectorAll('.nav-dot').forEach(dot => {
+                dot.classList.remove('active');
+            });
+
+            if (sectionId === 'home') {
+                document.querySelectorAll('.nav-dot')[0].classList.add('active');
+            } else if (sectionId === 'showcase') {
+                document.querySelectorAll('.nav-dot')[1].classList.add('active');
+            }
+        }
     </script>
 </body>
 </html>
+
 
