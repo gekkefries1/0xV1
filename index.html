@@ -14,8 +14,8 @@
     <style>
         :root {
             --glow-color: #D42CE3;
-            --glow-blur: 50px;
-            --glow-opacity: 1;
+            --glow-blur: 50px; 
+            --glow-opacity: 1; 
         }
 
         body {
@@ -23,10 +23,10 @@
             margin: 0;
             font-family: Arial, sans-serif;
             color: white;
-            height: 100vh;
+            height: 200vh; /* Extend height for scrolling */
             overflow: hidden;
             position: relative;
-            cursor: none;
+            cursor: none; 
         }
 
         .custom-cursor {
@@ -298,135 +298,186 @@
             color: white;
             padding: 10px 20px;
             border-radius: 10px;
-            box-shadow: 0 0
-    .vertical-nav {
-        position: fixed;
-        top: 50%;
-        right: 10px;
-        transform: translateY(-50%);
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
 
-    .nav-btn {
-        background: none;
-        border: none;
-        color: #ccc;
-        font-size: 16px;
-        cursor: pointer;
-        text-align: center;
-        transition: color 0.3s;
-    }
+        .notification.visible {
+            opacity: 1;
+        }
 
-    .nav-btn.active {
-        color: white;
-        font-weight: bold;
-    }
-</style>
+        .notification::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: white;
+            margin-top: 10px;
+            animation: countdown 3s linear;
+        }
+
+        @keyframes countdown {
+            from {
+                width: 100%;
+            }
+            to {
+                width: 0;
+            }
+        }
+
+        /* Navigation bar styles */
+        .nav-bar {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-dot {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: lightgrey;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .nav-dot.active {
+            background-color: white;
+        }
+    </style>
 </head>
 <body>
-    <div class="vertical-nav">
-        <button class="nav-btn active" onclick="scrollToSection('home')">Home</button>
-        <button class="nav-btn" onclick="scrollToSection('showcase')">Showcase</button>
+    <div class="container">
+        <div class="welcome">Welcome To</div>
+        <div class="ox-text">0x</div>
     </div>
-<div class="container" id="home">
-    <div class="welcome vanish">Welcome to</div>
-    <div class="ox-text">0x</div>
-</div>
-
-<div class="border-glow">
-    <div class="vertical-glow left"></div>
-    <div class="vertical-glow right"></div>
-</div>
-
-<img src="https://i.ibb.co/W2DQr84/james-in-amry.png" alt="0x" class="full-height-image">
-<div class="fade-overlay"></div>
-
-<div class="tall-box" id="showcase">
-    <div class="tall-box-text">Showcase</div>
-    <div class="button-container">
-        <button class="custom-button">Button 1</button>
-        <button class="custom-button">Button 2</button>
+    <div class="tall-box">
+        <div class="tall-box-text">0x Is a Free multi-Tool By Gekkefries. Download is NOT available at the moment.</div>
+        <div class="button-container">
+            <button class="custom-button" onclick="downloadFile()">Download</button>
+            <button class="custom-button" onclick="openDiscord()">Discord</button>
+        </div>
+        <div class="glow-box"></div>
     </div>
-    <div class="glow-box"></div>
-</div>
+    <img src="zero.png" alt="Zero" class="full-height-image">
+    <div class="fade-overlay"></div>
+    <div class="glow top-left"></div>
+    <div class="glow top-right"></div>
+    <div class="glow bottom-left"></div>
+    <div class="glow bottom-right"></div>
+    <div class="border-glow">
+        <div class="vertical-glow left"></div>
+        <div class="vertical-glow right"></div>
+    </div>
+    <div class="custom-cursor" id="customCursor"></div>
+    <div class="notification" id="notification"></div>
 
-<div class="glow top-left"></div>
-<div class="glow top-right"></div>
-<div class="glow bottom-left"></div>
-<div class="glow bottom-right"></div>
+    <!-- Navigation bar -->
+    <div class="nav-bar">
+        <div class="nav-dot active" onclick="scrollToSection('home')"></div>
+        <div class="nav-dot" onclick="scrollToSection('showcase')"></div>
+    </div>
 
-<div class="custom-cursor"></div>
-<div class="notification" id="notification"></div>
+    <!-- Showcase section -->
+    <div id="showcase" style="height: 100vh;"></div>
 
-<script>
-    // JavaScript for custom cursor
-    const customCursor = document.querySelector('.custom-cursor');
-
-    document.addEventListener('mousemove', (e) => {
-        customCursor.style.left = `${e.clientX}px`;
-        customCursor.style.top = `${e.clientY}px`;
-    });
-
-    document.addEventListener('mousedown', () => {
-        customCursor.classList.add('custom-cursor-clickable');
-    });
-
-    document.addEventListener('mouseup', () => {
-        customCursor.classList.remove('custom-cursor-clickable');
-    });
-
-    function showNotification(message) {
-        const notification = document.getElementById('notification');
-        notification.textContent = message;
-        notification.style.display = 'block';
-
-        setTimeout(() => {
-            notification.style.display = 'none';
-        }, 3000);
-    }
-
-    const buttons = document.querySelectorAll('.custom-button');
-    buttons.forEach(button => {
-        button.addEventListener('click', () => {
-            showNotification(`You clicked on ${button.textContent}`);
+    <script>
+        document.addEventListener('mousemove', function (e) {
+            const cursor = document.getElementById('customCursor');
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
         });
-    });
 
-    function scrollToSection(sectionId) {
-        const section = document.getElementById(sectionId);
-        if (section) {
-            window.scrollTo({
-                top: section.offsetTop,
-                behavior: 'smooth'
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mouseenter', function () {
+                const cursor = document.getElementById('customCursor');
+                cursor.classList.add('custom-cursor-clickable');
             });
-            highlightButton(sectionId);
-        }
-    }
 
-    function highlightButton(sectionId) {
-        const buttons = document.querySelectorAll('.nav-btn');
-        buttons.forEach(button => {
-            button.classList.remove('active');
+            button.addEventListener('mouseleave', function () {
+                const cursor = document.getElementById('customCursor');
+                cursor.classList.remove('custom-cursor-clickable');
+            });
         });
 
-        const button = document.querySelector(`.nav-btn:nth-child(${sectionId === 'home' ? 1 : 2})`);
-        if (button) {
-            button.classList.add('active');
-        }
-    }
+        function downloadFile() {
+            const fileURL = 'downloadlink'; // here will be the download link.
 
-    document.addEventListener('scroll', () => {
-        const sections = ['home', 'showcase'];
-        sections.forEach(sectionId => {
-            const section = document.getElementById(sectionId);
-            const rect = section.getBoundingClientRect();
-            if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
-                highlightButton(sectionId);
+            if (!fileURL || fileURL === 'download') { // Here too will be a download link
+                showNotification('Failed to Download the file.');
+                return;
             }
+
+            const link = document.createElement('a');
+            link.href = fileURL;
+            link.download = '0x';
+            
+            link.onerror = () => {
+                showNotification('Failed to Download the file.');
+            };
+
+            document.body.appendChild(link);
+            link.click();
+            showNotification('Download started successfully.');
+            document.body.removeChild(link);
+        }
+
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.classList.add('visible');
+            setTimeout(() => {
+                notification.classList.remove('visible');
+            }, 3000);
+        }
+
+        function openDiscord() {
+            window.open('https://discord.com', '_blank');
+        }
+
+        function createGlowExplosion(x, y) {
+            const explosion = document.createElement('div');
+            explosion.className = 'glow-explosion';
+            explosion.style.left = `${x - 10}px`;
+            explosion.style.top = `${y - 10}px`; 
+            document.body.appendChild(explosion);
+            explosion.addEventListener('animationend', () => {
+                document.body.removeChild(explosion);
+            });
+        }
+
+        document.addEventListener('click', function (e) {
+            createGlowExplosion(e.clientX, e.clientY);
         });
-    });
-</script>
+
+        window.onload = function() {
+            const cursor = document.getElementById('customCursor');
+            document.body.style.cursor = 'none';
+            cursor.style.display = 'block';
+        }
+
+        function scrollToSection(section) {
+            const homeDot = document.querySelector('.nav-dot:nth-child(1)');
+            const showcaseDot = document.querySelector('.nav-dot:nth-child(2)');
+            if (section === 'home') {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                homeDot.classList.add('active');
+                showcaseDot.classList.remove('active');
+            } else if (section === 'showcase') {
+                const showcaseSection = document.getElementById('showcase');
+                showcaseSection.scrollIntoView({ behavior: 'smooth' });
+                homeDot.classList.remove('active');
+                showcaseDot.classList.add('active');
+            }
+        }
+    </script>
 </body>
 </html>
