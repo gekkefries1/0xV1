@@ -47,22 +47,22 @@
 
         .container {
             position: absolute;
-            top: 50%;
-            left: 20%; /* Change for yk what ye.. */
-            transform: translateY(-50%);
+            top: 10%;
+            left: 50%;
+            transform: translate(-50%, -10%);
             display: flex;
             align-items: center;
             flex-direction: column;
         }
 
         .welcome {
-            font-size: 48px;
+            font-size: 6vw;
             font-weight: bold;
             margin-bottom: 10px; 
         }
 
         .ox-text {
-            font-size: 48px;
+            font-size: 6vw;
             font-weight: bold;
             color: var(--glow-color);
             position: relative;
@@ -92,7 +92,7 @@
         }
 
         .vanish {
-            font-size: 48px;
+            font-size: 6vw;
             font-weight: bold;
             color: #18181B;
             -webkit-text-stroke: 0.5px white;
@@ -103,10 +103,10 @@
 
         .glow {
             position: absolute;
-            width: 320px;
-            height: 320px;
+            width: 20vw;
+            height: 20vw;
             background: var(--glow-color);
-            filter: blur(150px);
+            filter: blur(15vw);
             border-radius: 50%;
             opacity: 0.5;
             animation: pulse 10s infinite;
@@ -121,10 +121,10 @@
             }
         }
 
-        .glow.top-left { top: -120px; left: -120px; }
-        .glow.top-right { top: -120px; right: -120px; }
-        .glow.bottom-left { bottom: -120px; left: -120px; }
-        .glow.bottom-right { bottom: -120px; right: -120px; }
+        .glow.top-left { top: -10vw; left: -10vw; }
+        .glow.top-right { top: -10vw; right: -10vw; }
+        .glow.bottom-left { bottom: -10vw; left: -10vw; }
+        .glow.bottom-right { bottom: -10vw; right: -10vw; }
 
         .border-glow {
             position: absolute;
@@ -140,9 +140,9 @@
             content: '';
             position: absolute;
             width: 100%;
-            height: 10px;
+            height: 1vh;
             background: var(--glow-color);
-            filter: blur(15px);
+            filter: blur(1.5vh);
             opacity: 0.5;
         }
 
@@ -158,9 +158,9 @@
             position: absolute;
             top: 0;
             bottom: 0;
-            width: 10px;
+            width: 1vh;
             background: var(--glow-color);
-            filter: blur(15px);
+            filter: blur(1.5vh);
             opacity: 0.5;
         }
 
@@ -195,8 +195,8 @@
 
         .glow-explosion {
             position: absolute;
-            width: 20px;
-            height: 20px;
+            width: 2vh;
+            height: 2vh;
             background-color: var(--glow-color);
             border-radius: 50%;
             animation: explode 1.5s ease-out;
@@ -219,10 +219,12 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 300px;
-            height: 400px;
+            width: 80vw;
+            max-width: 300px;
+            height: 50vh;
+            max-height: 400px;
             background-color: #101010;
-            border-radius: 20px;
+            border-radius: 2vw;
             opacity: 0.8;
             display: flex;
             flex-direction: column;
@@ -233,10 +235,10 @@
 
         .tall-box-text {
             color: var(--glow-color);
-            font-size: 24px;
+            font-size: 3vw;
             font-weight: bold;
             margin-bottom: auto;
-            margin-top: 20px;
+            margin-top: 2vh;
         }
 
         .glow-box {
@@ -245,21 +247,21 @@
             left: 0;
             width: 100%;
             height: 100%;
-            border-radius: 20px;
-            box-shadow: 0 0 20px var(--glow-color);
+            border-radius: 2vw;
+            box-shadow: 0 0 2vw var(--glow-color);
             animation: move-glow 3s infinite;
             pointer-events: none;
         }
 
         @keyframes move-glow {
             0% {
-                box-shadow: 0 0 20px var(--glow-color), 0 0 40px var(--glow-color);
+                box-shadow: 0 0 2vw var(--glow-color), 0 0 4vw var(--glow-color);
             }
             50% {
-                box-shadow: 0 0 30px var(--glow-color), 0 0 60px var(--glow-color);
+                box-shadow: 0 0 3vw var(--glow-color), 0 0 6vw var(--glow-color);
             }
             100% {
-                box-shadow: 0 0 20px var(--glow-color), 0 0 40px var(--glow-color);
+                box-shadow: 0 0 2vw var(--glow-color), 0 0 4vw var(--glow-color);
             }
         }
 
@@ -267,7 +269,7 @@
             display: flex;
             justify-content: space-around;
             width: 100%;
-            padding: 20px;
+            padding: 2vh;
             margin-top: auto;
         }
 
@@ -275,11 +277,11 @@
             background-color: var(--glow-color);
             border: none;
             color: white;
-            padding: 15px 30px;
-            border-radius: 10px;
+            padding: 1.5vh 3vh;
+            border-radius: 1vh;
             cursor: none; 
             transition: background-color 0.3s, transform 0.3s;
-            font-size: 18px;
+            font-size: 2.5vw;
         }
 
         .custom-button:hover {
@@ -290,14 +292,14 @@
         .notification {
             display: none;
             position: fixed;
-            top: 20px;
+            top: 2vh;
             left: 50%;
             transform: translateX(-50%);
             background-color: var(--glow-color);
             color: white;
-            padding: 10px 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            padding: 1vh 2vh;
+            border-radius: 1vh;
+            box-shadow: 0 0 1vh rgba(0, 0, 0, 0.5);
             z-index: 1000;
             text-align: center;
             opacity: 0;
@@ -312,9 +314,9 @@
             content: '';
             display: block;
             width: 100%;
-            height: 2px;
+            height: 0.2vh;
             background-color: white;
-            margin-top: 10px;
+            margin-top: 1vh;
             animation: countdown 3s linear;
         }
 
@@ -411,8 +413,8 @@
         function createGlowExplosion(x, y) {
             const explosion = document.createElement('div');
             explosion.className = 'glow-explosion';
-            explosion.style.left = `${x - 10}px`;
-            explosion.style.top = `${y - 10}px`; 
+            explosion.style.left = `${x - 1vh}px`;
+            explosion.style.top = `${y - 1vh}px`; 
             document.body.appendChild(explosion);
             explosion.addEventListener('animationend', () => {
                 document.body.removeChild(explosion);
@@ -431,3 +433,4 @@
     </script>
 </body>
 </html>
+
