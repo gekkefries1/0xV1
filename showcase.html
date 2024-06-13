@@ -68,11 +68,32 @@
         }
 
         .main-hub-title {
-            font-size: 72px; /* Increase the font size as desired */
-            color: #D42CE3;
+            font-size: 100px; /* Increased font size for "0x" */
+            color: white;
             margin-bottom: 20px;
-            -webkit-text-stroke: 3px white; /* White outline */
-            text-stroke: 3px white; /* White outline */
+            position: relative;
+            display: inline-block;
+        }
+
+        .main-hub-title::before {
+            content: '0x';
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: transparent;
+            -webkit-text-stroke: 2px white; /* Thin white outline */
+            text-stroke: 2px white; /* Thin white outline */
+            z-index: -1;
+        }
+
+        .main-hub-title::after {
+            content: '0x';
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: #D42CE3; /* Glow color */
+            filter: blur(10px); /* Adjust blur amount as needed */
+            z-index: -2;
         }
 
         .main-hub-buttons {
@@ -211,44 +232,56 @@
         </ul>
     </div>
 
-    <div id="main-hub" class="main-hub">
-        <div class="main-hub-title">0x</div>
+    <!-- Main Hub Section -->
+    <section id="main-hub" class="main-hub">
+        <div class="main-hub-title">
+            0x
+        </div>
         <div class="main-hub-buttons">
-            <a href="https://discord.com" target="_blank" class="main-hub-button">Discord Server</a>
-            <a href="download_link_here" download class="main-hub-button">Download</a>
+            <a href="https://discord.com" class="main-hub-button" target="_blank">Discord</a>
+            <a href="https://your_direct_download_link_here" class="main-hub-button" download>Download</a>
         </div>
-    </div>
+    </section>
 
-    <div id="showcase1" class="showcase">
-        <img src="images/image1.jpg" alt="Image 1">
+    <!-- Showcase Sections -->
+    <section id="showcase1" class="showcase">
+        <img src="images/showcase1.jpg" alt="Showcase 1 Image">
         <div class="showcase-content">
-            <div class="showcase-title">Title 1</div>
-            <div class="showcase-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ultricies leo nec nulla aliquam, non tincidunt velit luctus.</div>
+            <div class="showcase-title">Showcase 1 Title</div>
+            <div class="showcase-text">
+                Showcase 1 Description Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                Nulla convallis libero in augue vulputate, non varius lorem fringilla.
+            </div>
         </div>
-    </div>
+    </section>
 
-    <div id="showcase2" class="showcase">
-        <img src="images/image2.jpg" alt="Image 2">
+    <section id="showcase2" class="showcase">
+        <img src="images/showcase2.jpg" alt="Showcase 2 Image">
         <div class="showcase-content">
-            <div class="showcase-title">Title 2</div>
-            <div class="showcase-text">Suspendisse potenti. Vivamus venenatis magna at nunc vehicula, a ultricies urna vestibulum.</div>
+            <div class="showcase-title">Showcase 2 Title</div>
+            <div class="showcase-text">
+                Showcase 2 Description Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                Nulla convallis libero in augue vulputate, non varius lorem fringilla.
+            </div>
         </div>
-    </div>
+    </section>
 
-    <div id="showcase3" class="showcase">
-        <img src="images/image3.jpg" alt="Image 3">
+    <section id="showcase3" class="showcase">
+        <img src="images/showcase3.jpg" alt="Showcase 3 Image">
         <div class="showcase-content">
-            <div class="showcase-title">Title 3</div>
-            <div class="showcase-text">Nulla facilisi. Maecenas sollicitudin tortor id augue consequat, in dictum urna aliquet.</div>
+            <div class="showcase-title">Showcase 3 Title</div>
+            <div class="showcase-text">
+                Showcase 3 Description Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                Nulla convallis libero in augue vulputate, non varius lorem fringilla.
+            </div>
         </div>
-    </div>
-    
+    </section>
+
+    <!-- Scroll Indicators -->
     <div class="scroll-indicator">
-        <div class="indicator-dot" data-target="main-hub"></div>
-        <div class="indicator-dot" data-target="showcase1"></div>
-        <div class="indicator-dot" data-target="showcase2"></div>
-        <div class="indicator-dot" data-target="showcase3"></div>
-        <!-- Add more indicators as needed -->
+        <div class="indicator"></div>
+        <div class="indicator"></div>
+        <div class="indicator"></div>
     </div>
 
     <script>
