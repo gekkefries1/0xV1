@@ -11,14 +11,17 @@
             margin: 0;
             font-family: Arial, sans-serif;
             color: white;
+            overflow-x: hidden; /* Hide horizontal scroll */
         }
 
         .showcase {
             display: flex;
             align-items: center;
             justify-content: center;
+            height: 100vh; /* Full viewport height */
             padding: 20px;
             border-bottom: 1px solid #333;
+            scroll-snap-align: start; /* Snap each showcase to the top of the viewport */
         }
 
         .showcase:nth-child(even) {
@@ -27,9 +30,8 @@
 
         .showcase img {
             max-width: 100%;
-            height: auto;
-            width: 300px;
-            margin-right: 20px;
+            max-height: calc(100vh - 40px); /* Adjust for padding */
+            object-fit: cover; /* Ensure the image covers the entire container */
             border-radius: 10px;
         }
 
@@ -40,41 +42,42 @@
 
         .showcase-content {
             max-width: 600px;
+            text-align: center;
         }
 
         .showcase-title {
-            font-size: 24px;
-            margin-bottom: 10px;
+            font-size: 36px;
+            margin-bottom: 20px;
             color: #D42CE3;
         }
 
         .showcase-text {
-            font-size: 18px;
+            font-size: 24px;
             line-height: 1.6;
         }
     </style>
 </head>
 <body>
     <div class="showcase">
-        <img src="images/image1.jpg" alt="Image 1">
         <div class="showcase-content">
             <div class="showcase-title">Title 1</div>
             <div class="showcase-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ultricies leo nec nulla aliquam, non tincidunt velit luctus.</div>
         </div>
+        <img src="images/image1.jpg" alt="Image 1">
     </div>
     <div class="showcase">
-        <img src="images/image2.jpg" alt="Image 2">
         <div class="showcase-content">
             <div class="showcase-title">Title 2</div>
             <div class="showcase-text">Suspendisse potenti. Vivamus venenatis magna at nunc vehicula, a ultricies urna vestibulum.</div>
         </div>
+        <img src="images/image2.jpg" alt="Image 2">
     </div>
     <div class="showcase">
-        <img src="images/image3.jpg" alt="Image 3">
         <div class="showcase-content">
             <div class="showcase-title">Title 3</div>
             <div class="showcase-text">Nulla facilisi. Maecenas sollicitudin tortor id augue consequat, in dictum urna aliquet.</div>
         </div>
+        <img src="images/image3.jpg" alt="Image 3">
     </div>
     <!-- Add more showcase sections as needed -->
 </body>
