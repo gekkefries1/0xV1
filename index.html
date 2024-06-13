@@ -473,7 +473,7 @@
                 showcaseDot.classList.remove('active');
             } else if (section === 'showcase') {
                 const showcaseSection = document.getElementById('showcase');
-                showcaseSection.scrollIntoView({ behavior: 'smooth' });
+                window.scrollTo({ top: showcaseSection.offsetTop, behavior: 'smooth' });
                 homeDot.classList.remove('active');
                 showcaseDot.classList.add('active');
             }
