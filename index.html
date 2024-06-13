@@ -307,6 +307,7 @@
 
         .notification.visible {
             opacity: 1;
+            display: block; /* Ensure the element is displayed */
         }
 
         .notification::after {
@@ -380,6 +381,7 @@
     </style>
 </head>
 <body>
+    <!-- Main Content -->
     <div class="container">
         <div class="welcome">Welcome To</div>
         <div class="ox-text">0x</div>
@@ -440,7 +442,7 @@
         });
 
         function downloadFile() {
-            const fileURL = 'downloadlink'; // here will be the download link.
+            const fileURL = 'downloadlink'; // Here will be the download link.
 
             if (!fileURL || fileURL === 'download') { // Here too will be a download link
                 showNotification('Failed to Download the file.');
@@ -512,5 +514,6 @@
     </script>
 </body>
 </html>
+
 
 
