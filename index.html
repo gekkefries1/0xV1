@@ -23,8 +23,8 @@
             margin: 0;
             font-family: Arial, sans-serif;
             color: white;
-            height: 200vh; /* Extend height for scrolling */
-            overflow: hidden;
+            min-height: 100vh;
+            overflow: auto;
             position: relative;
             cursor: none; 
         }
@@ -328,29 +328,8 @@
             }
         }
 
-        /* Navigation bar styles */
-        .nav-bar {
-            position: fixed;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .nav-dot {
-            width: 15px;
-            height: 15px;
-            border-radius: 50%;
-            background-color: lightgrey;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s;
-        }
-
-        .nav-dot.active {
-            background-color: white;
+        .extra-space {
+            height: 1000px; /* Adjust the height as needed */
         }
     </style>
 </head>
@@ -380,14 +359,8 @@
     <div class="custom-cursor" id="customCursor"></div>
     <div class="notification" id="notification"></div>
 
-    <!-- Navigation bar -->
-    <div class="nav-bar">
-        <div class="nav-dot active" onclick="scrollToSection('home')"></div>
-        <div class="nav-dot" onclick="scrollToSection('showcase')"></div>
-    </div>
-
-    <!-- Showcase section -->
-    <div id="showcase" style="height: 100vh;"></div>
+    <!-- Extra space element -->
+    <div class="extra-space"></div>
 
     <script>
         document.addEventListener('mousemove', function (e) {
@@ -462,21 +435,6 @@
             const cursor = document.getElementById('customCursor');
             document.body.style.cursor = 'none';
             cursor.style.display = 'block';
-        }
-
-        function scrollToSection(section) {
-            const homeDot = document.querySelector('.nav-dot:nth-child(1)');
-            const showcaseDot = document.querySelector('.nav-dot:nth-child(2)');
-            if (section === 'home') {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-                homeDot.classList.add('active');
-                showcaseDot.classList.remove('active');
-            } else if (section === 'showcase') {
-                const showcaseSection = document.getElementById('showcase');
-                window.scrollTo({ top: showcaseSection.offsetTop, behavior: 'smooth' });
-                homeDot.classList.remove('active');
-                showcaseDot.classList.add('active');
-            }
         }
     </script>
 </body>
