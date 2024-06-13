@@ -12,16 +12,18 @@
             font-family: Arial, sans-serif;
             color: white;
             overflow-x: hidden; /* Hide horizontal scroll */
+            scroll-behavior: smooth; /* Smooth scrolling behavior */
         }
 
         .showcase {
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 100vh; /* Full viewport height */
+            height: calc(100vh - 20px); /* Full viewport height with extra space for smooth scrolling */
             padding: 20px;
             border-bottom: 1px solid #333;
             scroll-snap-align: start; /* Snap each showcase to the top of the viewport */
+            overflow: hidden; /* Hide overflow to prevent horizontal scrollbar */
         }
 
         .showcase:nth-child(even) {
@@ -30,11 +32,16 @@
 
         .showcase img {
             max-width: 100%;
-            max-height: calc(100vh - 40px); /* Adjust for padding */
+            max-height: calc(100vh - 60px); /* Adjust for padding and glow effect */
             object-fit: cover; /* Ensure the image covers the entire container */
             border-radius: 10px;
             box-shadow: 0 0 40px 10px #D42CE3; /* Glow effect */
             margin-right: 40px; /* Increased distance between image and text */
+            transition: transform 0.3s ease; /* Smooth slide effect */
+        }
+
+        .showcase:hover img {
+            transform: scale(1.03); /* Scale up on hover for a slight zoom effect */
         }
 
         .showcase:nth-child(even) img {
@@ -84,3 +91,4 @@
     <!-- Add more showcase sections as needed -->
 </body>
 </html>
+
