@@ -234,6 +234,7 @@
 </head>
 <body>
     <div class="navbar">
+        <button id="soundButton" class="main-hub-button" style="margin-right: 20px;">Play Sound</button>
         <ul>
             <li class="nav-item active" data-target="main-hub">Main Hub</li>
             <li class="nav-item" data-target="showcase1">Showcase 1</li>
@@ -293,6 +294,8 @@
         <div class="indicator-dot"></div>
     </div>
 
+    <audio id="sound" src="sound.mp3"></audio>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const navItems = document.querySelectorAll('.nav-item');
@@ -332,8 +335,16 @@
             });
             firstNavItem.classList.add('active');
             firstIndicator.classList.add('active');
+            
+            const soundButton = document.getElementById('soundButton');
+            const sound = document.getElementById('sound');
+
+            soundButton.addEventListener('click', () => {
+                sound.play();
+            });
         });
     </script>
 </body>
 </html>
+
 
